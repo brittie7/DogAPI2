@@ -16,6 +16,7 @@ function startApp () {
     console.log('form submitted');
     console.log(userInput);
     event.preventDefault(); 
+    $('.newPic').empty();
     const newUrl = getUrl(userInput)
     getDogImage(newUrl)
   });
