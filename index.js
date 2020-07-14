@@ -36,7 +36,7 @@ function getDogImage(url) {
     .then(response => response.json())
     .then(responseJson => 
       displayResults(responseJson))
-    .catch(error => console.log(error));
+    .catch(error => alert(error.message));
 }
 
 function displayResults(responseJson){
