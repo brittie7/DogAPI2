@@ -33,10 +33,14 @@ function getDogImage(url) {
   console.log('url created');
   console.log(url)
     fetch(url)
-    .then(response => response.json())
+    .then(response => {
+      if (response.ok) {
+       return response.json()
+      }
+      alert("Please select a breed")})
     .then(responseJson => 
       displayResults(responseJson))
-    .catch(error => alert(error.message));
+    .catch(error => console.log(error));
 }
 
 function displayResults(responseJson){
