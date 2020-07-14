@@ -33,11 +33,24 @@ function getDogImage(url) {
   console.log('url created');
   console.log(url)
   fetch(url)
+    .then(response => {
+      if (response.ok) {
+          response.json();
+          displayResults(responseJson)
+      } else {
+          console.log("not sccessful")
+      }
+    })
+    .then(data => console.log(data))
+    .catch(error => console.log('Error'))
+  }
+
+  /*fetch(url)
     .then(response => response.json())
     .then(responseJson => 
       displayResults(responseJson))
     .catch(error => console.log(error));
-}
+}*/
 
 function displayResults(responseJson){
   console.log(responseJson);
