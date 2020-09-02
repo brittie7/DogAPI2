@@ -10,46 +10,47 @@
 
 const picArea = $('.newPic')
 
-function startApp () {
-  $('#dogForm').on('submit', function(event){
+function startApp() {
+  $('#dogForm').on('submit', function (event) {
     const userInput = document.getElementById("dogsRequested").value.toLowerCase()
     console.log('form submitted');
     console.log(userInput);
-    event.preventDefault(); 
+    event.preventDefault();
     $('.newPic').empty();
     const newUrl = getUrl(userInput)
     getDogImage(newUrl)
   });
- //the dog number value. This is what we get out of the function at the
+  //the dog number value. This is what we get out of the function at the
 };
 
 function getUrl(dogValue) {
-     //anywhre I call this function, give me whatever I returned
-    const urlEnding = "/images/random";
-     return 'https://dog.ceo/api/breed/'.concat(dogValue,urlEnding);
+  //anywhre I call this function, give me whatever I returned
+  const urlEnding = "/images/random";
+  return 'https://dog.ceo/api/breed/'.concat(dogValue, urlEnding);
 };
 
 function getDogImage(url) {
   console.log('url created');
   console.log(url)
-    fetch(url)
+  fetch(url)
     .then(response => {
       if (response.ok) {
-       return response.json()
+        return response.json()
       }
-      alert("Please select a breed")})
-    .then(responseJson => 
+      alert("Please select a breed")
+    })
+    .then(responseJson =>
       displayResults(responseJson))
-    .catch(error => console.log(error));
+    .catch(error => console.log(alert('Something went wrong. Try again later.')));
 }
 
-function displayResults(responseJson){
+function displayResults(responseJson) {
   console.log(responseJson);
-   $(`<img src="${responseJson.message}" alt="a dog">`).appendTo(picArea);
-    $('.results').removeClass('hidden');
+  $(`<img src="${responseJson.message}" alt="a dog">`).appendTo(picArea);
+  $('.results').removeClass('hidden');
 };
 
-$(function() {
+$(function () {
   console.log('App loaded! Waiting for submit!');
   startApp();
   //getDogImage();
